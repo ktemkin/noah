@@ -66,11 +66,12 @@ int
 linux_to_darwin_o_flags(int l_flags)
 {
   int ret = 0;
+
   if (l_flags & LINUX_O_PATH) {
     if (l_flags & LINUX_O_CLOEXEC)
       ret |= O_CLOEXEC;
     if (l_flags & LINUX_O_NOFOLLOW)
-      ret |= O_SYMLINK;
+      ret |= O_NOFOLLOW;
     if (l_flags & LINUX_O_DIRECTORY)
       ret |= O_DIRECTORY;
     return ret;
@@ -85,30 +86,44 @@ linux_to_darwin_o_flags(int l_flags)
   default:                      /* Note: LINUX_O_RDONLY == 0 */
     ret |= O_RDONLY;
   }
-  if (l_flags & LINUX_O_NDELAY)
+  if (l_flags & LINUX_O_NDELAY) {
     ret |= O_NONBLOCK;
-  if (l_flags & LINUX_O_APPEND)
+  }
+  if (l_flags & LINUX_O_APPEND) {
     ret |= O_APPEND;
-  if (l_flags & LINUX_O_SYNC)
+  }
+  if (l_flags & LINUX_O_SYNC) {
     ret |= O_FSYNC;
-  if (l_flags & LINUX_O_NONBLOCK)
+  }
+  if (l_flags & LINUX_O_NONBLOCK) {
     ret |= O_NONBLOCK;
-  if (l_flags & LINUX_FASYNC)
+  }
+  if (l_flags & LINUX_FASYNC) {
     ret |= O_ASYNC;
-  if (l_flags & LINUX_O_CREAT)
+  }
+  if (l_flags & LINUX_O_CREAT) {
     ret |= O_CREAT;
-  if (l_flags & LINUX_O_TRUNC)
+  }
+  if (l_flags & LINUX_O_TRUNC) {
     ret |= O_TRUNC;
-  if (l_flags & LINUX_O_EXCL)
+  }
+  if (l_flags & LINUX_O_EXCL) {
     ret |= O_EXCL;
-  if (l_flags & LINUX_O_NOCTTY)
+  }
+  if (l_flags & LINUX_O_NOCTTY) {
     ret |= O_NOCTTY;
+  }
   /* if (l_flags & LINUX_O_DIRECT) */
   /*   ret |= O_DIRECT; */
-  if (l_flags & LINUX_O_NOFOLLOW)
+  if (l_flags & LINUX_O_NOFOLLOW) {
     ret |= O_NOFOLLOW;
-  if (l_flags & LINUX_O_DIRECTORY)
+  }
+  if (l_flags & LINUX_O_DIRECTORY) {
     ret |= O_DIRECTORY;
+  }
+  if (l_flags & LINUX_O_CLOEXEC) {
+    ret |= O_CLOEXEC;
+  }
 
   return ret;
 }

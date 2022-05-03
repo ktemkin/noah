@@ -40,6 +40,9 @@ add_executable(noah
   src/ipc/sem.c
   )
 target_link_libraries(noah ${PTHREAD_LIBRARY} ${HYPERVISOR_FRAMEWORK})
+add_custom_command(TARGET noah POST_BUILD COMMAND 
+	/usr/bin/codesign -f -s - --entitlements ${PROJECT_SOURCE_DIR}/entitlements.plist $<TARGET_FILE:noah>
+	VERBATIM)
 
 install(PROGRAMS bin/noah DESTINATION bin)
 install(TARGETS noah DESTINATION libexec)

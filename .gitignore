@@ -6,3 +6,7 @@ GTAGS
 tags
 bin/noah
 include/version.h
+.ccls-cache
+compile-commands.json
+test.sh
+build

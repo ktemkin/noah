@@ -49,7 +49,7 @@ print_arg(int syscall_num, int arg_idx, const char *arg_name, const char *type_n
     fprintf(strace_sink, "%s: ", arg_name);
 
     if (strcmp(type_name, "gstr_t") == 0) {
-      print_gstr(val, 50);
+      print_gstr(val, 256);
 
     } else if (strcmp(type_name, "gaddr_t") == 0) {
       fprintf(strace_sink, "0x%016llx [host: 0x%016llx]", val, (uint64_t)guest_to_host(val));

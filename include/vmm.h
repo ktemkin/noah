@@ -35,7 +35,7 @@ void vmm_read_register(hv_x86_reg_t, uint64_t *);
 void vmm_write_register(hv_x86_reg_t, uint64_t);
 void vmm_read_msr(uint32_t, uint64_t *);
 void vmm_write_msr(uint32_t, uint64_t);
-void vmm_read_vmcs(uint32_t, uint64_t *);
+int vmm_read_vmcs(uint32_t, uint64_t *);
 void vmm_write_vmcs(uint32_t, uint64_t);
 
 void vmm_write_fpstate(void *, size_t);

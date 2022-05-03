@@ -332,7 +332,12 @@ darwinfs_lseek(struct file *file, l_off_t offset, int whence)
 ssize_t
 darwin_to_linux_dent(struct dirent *d_dent, void *l_dent, size_t buflen, int is64)
 {
-  unsigned reclen = roundup(is64 ? offsetof(struct l_dirent64, d_name) : offsetof(struct l_dirent, d_name) + d_dent->d_namlen + 2, 8);
+
+  unsigned reclen64 = offsetof(struct l_dirent64, d_name) + 2 + d_dent->d_namlen;
+  unsigned reclen32 = offsetof(struct l_dirent, d_name) + 2 + d_dent->d_namlen;
+  unsigned reclen = is64 ? reclen64 : reclen32;
+
+  //unsigned reclen = roundup(is64 ? offsetof(struct l_dirent64, d_name) : offsetof(struct l_dirent, d_name) + d_dent->d_namlen + 2, 8);
   if (reclen > buflen) {
     return -1;
   }
@@ -1137,9 +1142,17 @@ vfs_ungrab_dir(struct path *path)
   free(path->dir);
 }
 
+static bool
+exists_in_vroot(const char *name, int lkflag) {
+	return (name[0] == '/') && (faccessat(proc.fileinfo.rootfd, &name[1], F_OK, lkflag) == 0);
+}
+
+
 static int
 do_openat(int dirfd, const char *name, int flags, int mode)
 {
+  const char *target;
+
   int lkflag = 0;
   if (flags & LINUX_O_NOFOLLOW) {
     lkflag |= LOOKUP_NOFOLLOW;
@@ -1149,20 +1162,43 @@ do_openat(int dirfd, const char *name, int flags, int mode)
   }
 
   struct path path;
+  struct dir dir;
   int r = vfs_grab_dir(dirfd, name, lkflag, &path);
   if (r < 0) {
     return r;
   }
-  r = path.fs->ops->openat(path.fs, path.dir, path.subpath, flags, mode);
+
+  // Check to see if our file exists as an absolute path in our overlayroot, and
+  // redirect paths if it does.
+  // FIXME: merge this into vfs_grab_dir instead of having it as a hack.
+  if (exists_in_vroot(name, lkflag)) {
+	target = &name[1];
+	dir.fd = proc.fileinfo.rootfd;
+  }
+  // Otherwise, if it's an absolute path, use it as a real filesystem path.
+  else if ((name[0] == '/') && (dirfd == LINUX_AT_FDCWD)) {
+	target = name;
+	dir.fd = proc.fileinfo.rootfd;
+  }
+  // Otherwise, treat it as a relative path.
+  else {
+	target = path.subpath;
+	dir.fd = path.dir->fd;
+  }
+
+  r = path.fs->ops->openat(path.fs, &dir, target, flags, mode);
+
   vfs_ungrab_dir(&path);
   return r;
 }
 
+/*
 static int
 do_open(const char *path, int l_flags, int mode)
 {
   return do_openat(LINUX_AT_FDCWD, path, l_flags, mode);
 }
+*/
 
 int
 vkern_openat(int atdirfd, const char *name, int flags, int mode)
@@ -1442,6 +1478,7 @@ DEFINE_SYSCALL(access, gstr_t, path_ptr, int, mode)
 DEFINE_SYSCALL(renameat, int, oldfd, gstr_t, oldpath_ptr, int, newfd, gstr_t, newpath_ptr)
 {
   char oldname[LINUX_PATH_MAX], newname[LINUX_PATH_MAX];
+  char *oldNameCall, *newNameCall;
 
   strncpy_from_user(oldname, oldpath_ptr, sizeof oldname);
   strncpy_from_user(newname, newpath_ptr, sizeof newname);
@@ -1458,7 +1495,11 @@ DEFINE_SYSCALL(renameat, int, oldfd, gstr_t, oldpath_ptr, int, newfd, gstr_t, ne
     r = -LINUX_EXDEV;
     goto out2;
   }
-  r = newpath.fs->ops->renameat(newpath.fs, oldpath.dir, oldpath.subpath, newpath.dir, newpath.subpath);
+
+  oldNameCall = (oldfd == LINUX_AT_FDCWD) ? oldname : oldpath.subpath;
+  newNameCall = (newfd == LINUX_AT_FDCWD) ? newname : newpath.subpath;
+
+  r = newpath.fs->ops->renameat(newpath.fs, oldpath.dir, oldNameCall, newpath.dir, newNameCall);
   vfs_ungrab_dir(&newpath);
  out2:
   vfs_ungrab_dir(&oldpath);

@@ -347,13 +347,15 @@ vmm_write_msr(hv_x86_reg_t reg, uint64_t val) {
   }
 }
 
-void
+int
 vmm_read_vmcs(hv_x86_reg_t field, uint64_t *val)
 {
-  if (hv_vmx_vcpu_read_vmcs(vcpu->vcpuid, field, val) != HV_SUCCESS) {
-    fprintf(stderr, "read_vmcs failed\n");
-    abort();
+  int rc = hv_vmx_vcpu_read_vmcs(vcpu->vcpuid, field, val);
+  if (rc != HV_SUCCESS) {
+    panic("read_vmcs failed (%x) [field: %x; vcpu: %x] \n", rc, field, vcpu->vcpuid);
   }
+
+  return rc;
 }
 
 void

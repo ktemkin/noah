@@ -1,0 +1,107 @@
+[
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/lib/vmm.c.o -c /Users/ktemkin/Projects/noah/lib/vmm.c",
+  "file": "/Users/ktemkin/Projects/noah/lib/vmm.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/main.c.o -c /Users/ktemkin/Projects/noah/src/main.c",
+  "file": "/Users/ktemkin/Projects/noah/src/main.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/meta_strace.c.o -c /Users/ktemkin/Projects/noah/src/meta_strace.c",
+  "file": "/Users/ktemkin/Projects/noah/src/meta_strace.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/base.c.o -c /Users/ktemkin/Projects/noah/src/base.c",
+  "file": "/Users/ktemkin/Projects/noah/src/base.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/conv.c.o -c /Users/ktemkin/Projects/noah/src/conv.c",
+  "file": "/Users/ktemkin/Projects/noah/src/conv.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/debug.c.o -c /Users/ktemkin/Projects/noah/src/debug.c",
+  "file": "/Users/ktemkin/Projects/noah/src/debug.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/proc/exec.c.o -c /Users/ktemkin/Projects/noah/src/proc/exec.c",
+  "file": "/Users/ktemkin/Projects/noah/src/proc/exec.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/proc/fork.c.o -c /Users/ktemkin/Projects/noah/src/proc/fork.c",
+  "file": "/Users/ktemkin/Projects/noah/src/proc/fork.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/proc/process.c.o -c /Users/ktemkin/Projects/noah/src/proc/process.c",
+  "file": "/Users/ktemkin/Projects/noah/src/proc/process.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/net/net.c.o -c /Users/ktemkin/Projects/noah/src/net/net.c",
+  "file": "/Users/ktemkin/Projects/noah/src/net/net.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/ipc/futex.c.o -c /Users/ktemkin/Projects/noah/src/ipc/futex.c",
+  "file": "/Users/ktemkin/Projects/noah/src/ipc/futex.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/ipc/signal.c.o -c /Users/ktemkin/Projects/noah/src/ipc/signal.c",
+  "file": "/Users/ktemkin/Projects/noah/src/ipc/signal.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/fs/fs.c.o -c /Users/ktemkin/Projects/noah/src/fs/fs.c",
+  "file": "/Users/ktemkin/Projects/noah/src/fs/fs.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/sys/sys.c.o -c /Users/ktemkin/Projects/noah/src/sys/sys.c",
+  "file": "/Users/ktemkin/Projects/noah/src/sys/sys.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/sys/time.c.o -c /Users/ktemkin/Projects/noah/src/sys/time.c",
+  "file": "/Users/ktemkin/Projects/noah/src/sys/time.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/mm/mm.c.o -c /Users/ktemkin/Projects/noah/src/mm/mm.c",
+  "file": "/Users/ktemkin/Projects/noah/src/mm/mm.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/mm/mmap.c.o -c /Users/ktemkin/Projects/noah/src/mm/mmap.c",
+  "file": "/Users/ktemkin/Projects/noah/src/mm/mmap.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/mm/malloc.c.o -c /Users/ktemkin/Projects/noah/src/mm/malloc.c",
+  "file": "/Users/ktemkin/Projects/noah/src/mm/malloc.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/proc/ptrace.c.o -c /Users/ktemkin/Projects/noah/src/proc/ptrace.c",
+  "file": "/Users/ktemkin/Projects/noah/src/proc/ptrace.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/mm/shm.c.o -c /Users/ktemkin/Projects/noah/src/mm/shm.c",
+  "file": "/Users/ktemkin/Projects/noah/src/mm/shm.c"
+},
+{
+  "directory": "/Users/ktemkin/Projects/noah/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/ktemkin/Projects/noah/include -Wall -Wextra -Wno-unused-parameter -std=gnu11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -o CMakeFiles/noah.dir/src/ipc/sem.c.o -c /Users/ktemkin/Projects/noah/src/ipc/sem.c",
+  "file": "/Users/ktemkin/Projects/noah/src/ipc/sem.c"
+}
+]
