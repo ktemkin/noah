@@ -228,6 +228,9 @@ record_region(struct mm *mm, void *haddr, gaddr_t gaddr, size_t size, int prot, 
   };
 
   if (RB_INSERT(mm_region_tree, &mm->mm_region_tree, region) != NULL) {
+	struct mm_region *overlapping = RB_INSERT(mm_region_tree, &mm->mm_region_tree, region);
+	fprintf(stderr, "trying to map: %08llx - %08llx\n", gaddr, gaddr + size);
+	fprintf(stderr, "overlaps with: %08llx - %08llx\n", overlapping->gaddr, overlapping->gaddr + overlapping->size);
     panic("recording overlapping regions\n");
   }
   struct mm_region *prev = RB_PREV(mm_region_tree, &mm->mm_region_tree, region);

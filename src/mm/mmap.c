@@ -67,6 +67,13 @@ do_munmap(gaddr_t gaddr, size_t size)
     overlapping = list_entry(next, struct mm_region, list);
   }
 
+  // HACK(ktemkin): the algorithm original-Noah uses is _almost_ correct -- but it can miss
+  // sections if the list changes while it's working, which is a problem for an algorithm that
+  // mutates the list it's working on. As a workaround, we'll recurse back into this function,
+  // ensuring this function is run until there's no more overlapping sections. This shouldn't
+  // generally recurse more than once.
+  do_munmap(gaddr, size);
+
   return 0;
 }
 

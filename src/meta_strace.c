@@ -205,9 +205,28 @@ trace_read_pre(int syscall_num, int argc, char *argnames[6], char *typenames[6],
   // Print nothing
 }
 
-/* Print buf after syscall in order to show what stinrg is actually read */
+
+/* Print buf after syscall in order to show what string is actually read */
 void
 trace_read_post(int syscall_num, int argc, char *argnames[6], char *typenames[6], uint64_t vals[6], uint64_t ret)
+{
+  for (int i = 0; i < argc; i++) {
+    if (i > 0) {
+      fprintf(strace_sink, ", ");
+    }
+    if (i == 1) {
+      fprintf(strace_sink, "%s: ", argnames[1]);
+      print_gstr(vals[1], MIN(50, ret)); // Print buf as string
+    } else {
+      print_arg(syscall_num, i, argnames[i], typenames[i], vals[i]);
+    }
+  }
+
+  print_ret(syscall_num, argc, argnames, typenames, vals, ret);
+}
+
+void
+trace_pread_post(int syscall_num, int argc, char *argnames[6], char *typenames[6], uint64_t vals[6], uint64_t ret)
 {
   for (int i = 0; i < argc; i++) {
     if (i > 0) {
@@ -367,6 +386,7 @@ trace_rt_sigprocmask_post(int syscall_num, int argc, char *argnames[6], char *ty
 
 meta_strace_hook *strace_pre_hooks[NR_SYSCALLS] = {
   [LSYS_read] = trace_read_pre,
+  [LSYS_pread64] = trace_read_pre,
   [LSYS_recvfrom] = trace_recvfrom_pre,
   [LSYS_write] = trace_write_pre,
   [LSYS_sendto] = trace_sendto_pre,
@@ -374,6 +394,7 @@ meta_strace_hook *strace_pre_hooks[NR_SYSCALLS] = {
   [LSYS_rt_sigprocmask] = trace_rt_sigprocmask_post,
 };
 meta_strace_hook *strace_post_hooks[NR_SYSCALLS] = {
+  [LSYS_pread64] = trace_pread_post,
   [LSYS_read] = trace_read_post,
   [LSYS_recvfrom] = trace_recvfrom_post,
   [LSYS_rt_sigprocmask] = trace_rt_sigprocmask_pre,
