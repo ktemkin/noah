@@ -364,7 +364,7 @@ init_reg_state(void)
 }
 
 static void
-prepare_newproc(void)
+prepare_newproc(const char *exepath)
 {
   /* Reinitialize proc and task structures */
   /* Not handling locks seriously now because multi-thread execve is not implemented yet */
@@ -376,6 +376,7 @@ prepare_newproc(void)
   // TODO: destroy LDT if it is implemented
 
   /* task.tid = getpid(); */
+  strlcpy(task.exepath, exepath, LINUX_PATH_MAX);
   task.clear_child_tid = task.set_child_tid = 0;
   task.robust_list = 0;
   close_cloexec();
@@ -407,7 +408,7 @@ do_exec(const char *elf_path, int argc, char *argv[], char **envp)
     return -LINUX_EACCES;
   }
 
-  prepare_newproc();
+  prepare_newproc(argv[0]);
 
   data = mmap(0, st.st_size, PROT_READ | PROT_EXEC, MAP_PRIVATE, fd, 0);
 

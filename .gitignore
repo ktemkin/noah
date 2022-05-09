@@ -10,3 +10,4 @@ include/version.h
 compile-commands.json
 test.sh
 build
+.cache

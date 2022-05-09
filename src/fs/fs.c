@@ -162,6 +162,18 @@ init_fileinfo(int rootfd)
   fileinfo->rootfd = vkern_dup_fd(rootfd, false);
 }
 
+/** Helper that determines if one string starts with another. */
+static bool startsWith(const char* pre, const char* str) {
+    size_t lenpre = strlen(pre), lenstr = strlen(str);
+    return lenstr < lenpre ? false : memcmp(pre, str, lenpre) == 0;
+}
+
+/** Returns true iff this is a special file that we'll need to emulate. */
+static bool fileRequiresEmulation(const char* path) {
+    // For now, we only support procFS emualtion, so only support those.
+    return startsWith("/proc/", path);
+}
+
 void
 darwin_to_linux_rlimit_nofile(struct rlimit *darwin_rlimit, struct l_rlimit *linux_rlimit)
 {
@@ -1582,6 +1594,41 @@ DEFINE_SYSCALL(link, gstr_t, oldpath, gstr_t, newpath)
   return sys_linkat(LINUX_AT_FDCWD, oldpath, LINUX_AT_FDCWD, newpath, 0);
 }
 
+
+int emulated_readlinkat(int dirfd, char* path, gaddr_t buf_ptr, int bufsize) {
+
+    int r = 0;
+
+    // Try to get a host-space buffer for us to store our result into.
+    char* buf = malloc(bufsize);
+    if (buf == NULL) {
+        return -LINUX_ENOMEM;
+    }
+
+    // If this is proc/self/exe, return the current path.
+    if (strcmp(path, "/proc/self/exe") == 0) {
+        // Copy our exepath into the target buffer.
+        r = strlcpy(buf, task.exepath, bufsize);
+        if (r > bufsize) {
+            r = bufsize;
+        }
+    }
+    // Otherwise, we don't have an emulation for this file.
+    // Return that it doesn't exist.
+    else {
+        r = -ENOENT;
+    }
+
+    // Copy our result to the guest.
+    if (copy_to_user(buf_ptr, buf, bufsize)) {
+        r = -LINUX_EFAULT;
+    }
+
+    free(buf);
+    return r;
+}
+
+
 DEFINE_SYSCALL(readlinkat, int, dirfd, gstr_t, path_ptr, gaddr_t, buf_ptr, int, bufsize)
 {
   char name[LINUX_PATH_MAX];
@@ -1589,6 +1636,13 @@ DEFINE_SYSCALL(readlinkat, int, dirfd, gstr_t, path_ptr, gaddr_t, buf_ptr, int, 
 
   int r;
   struct path path;
+
+  // If this happens to be a path we'll have to perform some emulation for,
+  // use our special handler instead of the normal readlink.
+  if (fileRequiresEmulation(name)) {
+      return emulated_readlinkat(dirfd, name, buf_ptr, bufsize);
+  }
+
   if ((r = vfs_grab_dir(dirfd, name, LOOKUP_NOFOLLOW, &path)) < 0) {
     return r;
   }

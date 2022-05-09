@@ -66,12 +66,15 @@ void handle_signal(void);
 bool has_sigpending(void);
 int send_signal(pid_t pid, int sig);
 
+#define LINUX_PATH_MAX 4096         /* including null */
+
 /* task related data */
 
 struct task {
   struct list_head head;
   gaddr_t set_child_tid, clear_child_tid;
   uint64_t tid;
+  char exepath[LINUX_PATH_MAX];
   gaddr_t robust_list;
   l_sigset_t sigmask;
   atomic_sigbits_t sigpending;
@@ -144,7 +147,6 @@ void init_fpu(void);
 #define LINUX_RELEASE "4.6.4"
 #define LINUX_VERSION "#1 SMP PREEMPT Mon Jul 11 19:12:32 CEST 2016" /* FIXME */
 
-#define LINUX_PATH_MAX 4096         /* including null */
 
 /* conversion */
 
